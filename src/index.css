@@ -1,23 +1,26 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
+  --text: #74695b;
+  --text-h: #3a332b;
+  --bg: #eee1cb;
+  --border: rgba(70, 57, 43, 0.12);
+  --surface: rgba(255, 249, 237, 0.56);
+  --code-bg: rgba(70, 57, 43, 0.08);
+  --accent: #4a4035;
+  --on-accent: #faf2e5;
+  --accent-bg: rgba(74, 64, 53, 0.08);
+  --accent-border: rgba(74, 64, 53, 0.5);
+  --social-bg: rgba(255, 249, 237, 0.5);
   --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+    rgba(58, 51, 43, 0.18) 0 10px 15px -3px, rgba(58, 51, 43, 0.08) 0 4px 6px -2px;
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: Georgia, 'Times New Roman', serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
-  color-scheme: light dark;
+  /* Light only for now; a warm dark theme will be designed later. */
+  color-scheme: light;
   color: var(--text);
   background: var(--bg);
   font-synthesis: none;
@@ -30,31 +33,29 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
 body {
   margin: 0;
 }
 
+/*
+  Paper texture: a fixed, click-through layer over the page background.
+  The grain itself comes from the #paperNoise SVG filter defined in App.jsx.
+  Kept faint on purpose so it reads as paper, not as visible dots.
+*/
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+  filter: url('#paperNoise');
+}
+
 #root {
+  position: relative;
+  z-index: 1; /* keeps content above the texture layer */
   width: 1126px;
   max-width: 100%;
   margin: 0 auto;

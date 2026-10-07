@@ -1,7 +1,8 @@
 .home {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  justify-content: center;
+  gap: 72px;
   padding: 72px 24px;
   flex-grow: 1;
   box-sizing: border-box;
@@ -11,26 +12,33 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
+  max-width: 720px;
+  margin: 0 auto;
   text-align: center;
 
   h1 {
     margin: 0;
+    font-size: clamp(3.5rem, 9vw, 6rem);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
   }
 }
 
 .hero-description {
-  max-width: 560px;
+  max-width: 590px;
+  font-size: 1.08rem;
+  line-height: 1.7;
 }
 
 .cta {
-  margin-top: 8px;
-  padding: 12px 28px;
-  border-radius: 8px;
-  border: 2px solid transparent;
+  margin-top: 12px;
+  padding: 12px 22px;
+  border-radius: 9px;
   background: var(--accent);
-  color: #fff;
-  font-weight: 500;
+  color: var(--on-accent);
+  font-size: 0.95rem;
+  font-weight: 600;
   text-decoration: none;
   transition: box-shadow 0.3s;
 
@@ -38,45 +46,50 @@
     box-shadow: var(--shadow);
   }
   &:focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--text-h);
     outline-offset: 2px;
   }
 }
 
 .areas {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
 }
 
 .area-card {
-  padding: 32px;
+  padding: 30px;
   border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--accent-bg);
+  border-radius: 16px;
+  background: var(--surface);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   text-align: left;
 
   h2 {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
+    font-size: 1.75rem;
+  }
+
+  p {
+    line-height: 1.65;
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 680px) {
   .home {
-    padding: 40px 20px;
-    gap: 32px;
+    padding: 56px 18px;
+    gap: 50px;
+  }
+
+  .areas {
+    grid-template-columns: 1fr;
   }
 
   .area-card {
-    padding: 24px 20px;
-  }
-}
-
-@media (max-width: 640px) {
-  .areas {
-    grid-template-columns: 1fr;
+    padding: 24px;
   }
 }
