@@ -1,9 +1,48 @@
 import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import LearnPage from './features/learn/pages/LearnPage'
+import LessonPage from './features/learn/pages/LessonPage'
+
+function Home() {
+  return (
+    <main className="home">
+      <section className="hero">
+        <h1>Mental Math</h1>
+
+        <p className="hero-description">
+          Learn and practice mental arithmetic. Build fast, confident
+          calculation skills one technique at a time.
+        </p>
+
+        <a className="cta" href="/learn">
+          Start learning
+        </a>
+      </section>
+
+      <section className="areas" aria-label="Main areas">
+        <article className="area-card">
+          <h2>Learn</h2>
+          <p>
+            Progress through chapters and lessons. Each lesson teaches a
+            mental arithmetic technique and is followed by practice.
+          </p>
+        </article>
+
+        <article className="area-card">
+          <h2>Practice</h2>
+          <p>
+            Practice techniques independently, whenever you like, without
+            following the lessons in order.
+          </p>
+        </article>
+      </section>
+    </main>
+  )
+}
 
 function App() {
   return (
     <>
-      {/* Hidden SVG that defines the paper-grain filter used by body::before in index.css */}
       <svg
         width="0"
         height="0"
@@ -23,36 +62,16 @@ function App() {
         </filter>
       </svg>
 
-      <main className="home">
-        <section className="hero">
-          <h1>Mental Math</h1>
-          <p className="hero-description">
-            Learn and practice mental arithmetic. Build fast, confident
-            calculation skills one technique at a time.
-          </p>
-          <a className="cta" href="#learn">
-            Start learning
-          </a>
-        </section>
-
-        <section className="areas" aria-label="Main areas">
-          <article id="learn" className="area-card">
-            <h2>Learn</h2>
-            <p>
-              Progress through chapters and lessons. Each lesson teaches a
-              mental arithmetic technique and is followed by practice.
-            </p>
-          </article>
-
-          <article id="practice" className="area-card">
-            <h2>Practice</h2>
-            <p>
-              Practice techniques independently, whenever you like, without
-              following the lessons in order.
-            </p>
-          </article>
-        </section>
-      </main>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/learn" element={<LearnPage />} />
+          <Route
+            path="/learn/chapter/:chapterId/lesson/:lessonId"
+            element={<LessonPage />}
+          />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
